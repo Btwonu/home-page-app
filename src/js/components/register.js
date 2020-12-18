@@ -1,7 +1,9 @@
 import { html, render } from 'lit-html';
+import Sidebar from './sidebar';
 
 const template = (ctx) => {
-  return html``;
+  return html` <navbar-component></navbar-component>
+    <sidebar-component></sidebar-component>`;
 };
 
 class Register extends HTMLElement {
