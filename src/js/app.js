@@ -10,6 +10,9 @@ import '../css/style.scss';
 // Router
 import { Router } from '@vaadin/router';
 
+import './components/home';
+import './components/register';
+
 // Declarations
 const app = document.getElementById('app');
 const router = new Router(app);
