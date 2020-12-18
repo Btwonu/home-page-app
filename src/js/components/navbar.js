@@ -1,19 +1,15 @@
 import { html, render } from 'lit-html';
 
-const template = (ctx) => {
+const template = ({ toggleSidebar }) => {
   return html`<nav class="nav">
-    <input type="checkbox" id="nav-check" />
-    <div class="nav-header">
-      <a class="nav-title" href="/">Webpack</a>
+    <div class="wrapper">
+      <div class="sidebar-toggle" @click=${toggleSidebar}>
+        <i class="material-icons hamburger-icon">menu</i>
+      </div>
+      <div class="nav-header">
+        <a class="nav-title" href="/">Webpack</a>
+      </div>
     </div>
-    <div class="nav-btn">
-      <label for="nav-check">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-    </div>
-
     <div class="nav-links">
       <a href="/register">Register</a>
       <a href="/login">Login</a>
@@ -24,7 +20,7 @@ const template = (ctx) => {
   </nav>`;
 };
 
-class Boilerplate extends HTMLElement {
+class Navbar extends HTMLElement {
   constructor() {
     super();
   }
@@ -33,14 +29,24 @@ class Boilerplate extends HTMLElement {
     this.render();
   }
 
+  toggleSidebar() {
+    if (localStorage.getItem('sidebar')) {
+      localStorage.removeItem('sidebar');
+
+      document.querySelector('.sidebar').classList.remove('active');
+      return;
+    }
+
+    document.querySelector('.sidebar').classList.add('active');
+    localStorage.setItem('sidebar', 'active');
+  }
+
   render() {
     render(template(this), this, { eventContext: this });
     // render lit-html template, pass component as context, render component, use component as context for events
   }
 }
 
-customElements.define('boilerplate-component', Boilerplate);
-
-export default Boilerplate;
-
 customElements.define('navbar-component', Navbar);
+
+export default Navbar;
