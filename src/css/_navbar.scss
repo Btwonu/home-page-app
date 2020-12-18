@@ -13,17 +13,27 @@ a {
 
 .nav {
   height: 50px;
-  width: 100%;
   background-color: #4d4d4d;
-  position: relative;
   z-index: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-toggle {
+  padding: 1rem;
+  cursor: pointer;
 }
 
 .nav > .nav-header {
   display: inline;
 }
 
-.nav > .nav-header > .nav-title {
+.nav-header > .nav-title {
   display: inline-block;
   font-size: 22px;
   color: #fff;
