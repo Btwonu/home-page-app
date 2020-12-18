@@ -1,0 +1,162 @@
+.sidebar {
+  display: flex;
+  flex-flow: column;
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  background-color: lighten($main-color, 2%);
+  opacity: 0.9;
+  transform: translateX(-300px);
+  transition: transform 0.3s ease-out;
+
+  .heading {
+    font-family: 'Langar', cursive;
+    font-size: 2.6rem;
+    font-weight: 600;
+    line-height: 65px;
+    text-align: center;
+    background-color: darken($main-color, 1%);
+  }
+}
+
+// Profile view
+.profile-view {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+  height: 18rem;
+  flex: 1;
+}
+
+.profile-icon {
+  border-radius: 50%;
+  width: 9rem;
+  height: 10rem;
+  background-color: $secondary-color; // Should contain avatar image
+  background: url('../images/avatar-head.png') center / cover no-repeat;
+}
+
+.profile-name {
+  padding: 1rem;
+  font-size: 2.6rem;
+}
+
+// Sidebar menu list
+.sidebar-menu {
+  flex: 2;
+
+  .dropdown {
+    .dropdown-heading {
+      display: flex;
+      align-items: center;
+      padding: 2rem;
+      position: relative;
+
+      .arrow-icon {
+        padding: 1rem;
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+        transition: transform 0.2s ease-out;
+      }
+
+      .heading-icon {
+        border-left: 3px solid transparent;
+      }
+
+      &:hover {
+        background-color: lighten($main-color, 5%);
+
+        // .heading-icon {
+        //   border-left: 3px solid $secondary-color;
+        // }
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $secondary-color;
+      // font-size: 1.1rem;
+      display: block;
+      padding: 6px;
+    }
+  }
+
+  .dropdown-content {
+    display: none;
+
+    li {
+      position: relative;
+      padding: 5px;
+
+      &:after {
+        content: '';
+        bottom: 0px;
+        width: 0;
+        height: 2px;
+        position: absolute;
+        transition: all 0.2s ease-out;
+        background-color: #ededed;
+        left: 10rem;
+      }
+
+      &:hover::after {
+        width: 40%;
+      }
+
+      a {
+        padding-left: 10rem;
+      }
+    }
+  }
+}
+
+.logout {
+  padding: 4rem;
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: center;
+  height: 9rem;
+  align-items: center;
+
+  i {
+    transition: all 0.2s ease-out;
+  }
+
+  a {
+    padding: 1rem 1rem 1.2rem 1.4rem;
+    font-size: 2.4rem;
+    color: $secondary-color;
+  }
+
+  &:hover {
+    background-color: lighten($main-color, 5%);
+  }
+}
+
+.dropdown-content.active {
+  display: block;
+}
+
+.arrow-icon.active {
+  transform: rotate(90deg);
+}
+
+.sidebar.active {
+  // display: block;
+  transform: translateX(0px);
+}
+
+.logout.up {
+  i {
+    transform: rotate(-90deg);
+  }
+}
+
+.logout.down {
+  i {
+    transform: rotate(90deg);
+  }
+}
