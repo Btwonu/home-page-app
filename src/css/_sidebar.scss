@@ -9,6 +9,7 @@
   opacity: 0.9;
   transform: translateX(-300px);
   transition: transform 0.3s ease-out;
+  z-index: 1;
 
   .heading {
     font-family: 'Langar', cursive;

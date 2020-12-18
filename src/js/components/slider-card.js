@@ -1,15 +1,12 @@
 import { html, render } from 'lit-html';
-import Sidebar from './sidebar';
-import Navbar from './navbar';
-import Slider from './slider';
 
 const template = (ctx) => {
-  return html` <navbar-component></navbar-component>
-    <sidebar-component></sidebar-component>
-    <slider-component></slider-component>`;
+  return html`<div class="slider-card">
+    <div class="slider-card__image"></div>
+  </div>`;
 };
 
-class Home extends HTMLElement {
+class SliderCard extends HTMLElement {
   constructor() {
     super();
   }
@@ -24,6 +21,6 @@ class Home extends HTMLElement {
   }
 }
 
-customElements.define('home-component', Home);
+customElements.define('slider-card', SliderCard);
 
-export default Home;
+export default SliderCard;
