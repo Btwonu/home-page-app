@@ -1,0 +1,8 @@
+@import 'navbar';
+@import 'variables';
+
+$body-color: red;
+
+body {
+  color: $body-color;
+}
