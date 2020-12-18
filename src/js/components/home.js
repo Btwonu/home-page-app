@@ -1,7 +1,10 @@
 import { html, render } from 'lit-html';
+import Sidebar from './sidebar';
+import Navbar from './navbar';
 
 const template = (ctx) => {
-  return html``;
+  return html` <navbar-component></navbar-component>
+    <sidebar-component></sidebar-component>`;
 };
 
 class Home extends HTMLElement {
@@ -19,6 +22,6 @@ class Home extends HTMLElement {
   }
 }
 
-export default Home;
-
 customElements.define('home-component', Home);
+
+export default Home;
