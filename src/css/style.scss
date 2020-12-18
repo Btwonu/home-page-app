@@ -1,8 +1,11 @@
+@import 'reset';
 @import 'navbar';
 @import 'variables';
-
-$body-color: red;
+@import 'sidebar';
+@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
 
 body {
-  color: $body-color;
+  background-color: $main-color;
+  color: $secondary-color;
+  font-size: 1.6rem;
 }
