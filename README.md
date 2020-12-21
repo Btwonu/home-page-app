@@ -5,6 +5,21 @@ My skeleton for building single page applications.
 ## Webpack
 
 - Development server
+
+  > npm start script needs different arguments based on the OS
+
+  **Ubuntu**:
+
+  ```json
+  "start": "webpack serve --open google-chrome"
+  ```
+
+  **Windows**:
+
+  ```json
+  "start": "webpack serve --open chrome"
+  ```
+
 - Babel integration
 - Sass integration
 - Copy plugin
