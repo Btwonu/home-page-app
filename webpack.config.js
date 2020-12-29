@@ -12,8 +12,7 @@ module.exports = {
     publicPath: '/',
   },
   devServer: {
-    // open: 'Google Chrome',
-    open: 'chrome',
+    open: 'Google Chrome',
     contentBase: './dist',
     historyApiFallback: true,
   },
