@@ -1,8 +1,12 @@
 import { html, render } from 'lit-html';
+import '../../lib/glider/glider.min';
+import '../../lib/glider/glider.min.css';
 
 const template = (ctx) => {
   return html`<div class="slider-card">
-    <div class="slider-card__image"></div>
+    <a href="/" target="_blank">
+      <div class="slider-card__image"></div>
+    </a>
   </div>`;
 };
 
@@ -13,6 +17,14 @@ class SliderCard extends HTMLElement {
 
   connectedCallback() {
     this.render();
+
+    const linkEl = this.querySelector('a');
+    const imgEl = this.querySelector('.slider-card__image');
+
+    linkEl.href = this.getAttribute('url');
+    imgEl.style.background = `url('${this.getAttribute(
+      'img'
+    )}') center / contain no-repeat`;
   }
 
   render() {
