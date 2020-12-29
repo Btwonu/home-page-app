@@ -1,13 +1,25 @@
+@import 'variables';
 @import 'reset';
 @import 'navbar';
-@import 'variables';
 @import 'sidebar';
 @import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
 body {
-  background-color: $main-color;
-  color: $secondary-color;
+  font-family: 'Roboto', sans-serif;
+  background-color: $color-main;
+  color: $color-secondary;
   font-size: 1.6rem;
+  height: 100vh;
+}
+
+#app {
+  height: 100%;
+}
+
+home-component {
+  display: flex;
+  flex-flow: column;
 }
 
 .slider {
@@ -30,4 +42,115 @@ body {
   // background: url('../images/github.png') center / cover;
   width: 100%;
   height: 100%;
+}
+
+// Search box
+.search-form {
+  position: relative;
+  width: 30rem;
+  // background: var(--color-brand);
+  // border-radius: var(--rad);
+
+  input,
+  button {
+    height: 3.6rem;
+    border: 0;
+    font-size: 1.8rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.search-input {
+  width: 100%;
+  background: #fff;
+  padding: 0 1.6rem;
+  border-radius: $border-radius-search;
+  appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
+  transition: all 0.3s cubic-bezier(0, 0, 0.43, 1.49);
+  transition-property: width, border-radius;
+  z-index: 1;
+  position: relative;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  display: none; // prevent being able to tab to it
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6rem;
+  // font-weight: bold;
+  background-color: $color-search-btn;
+  border-radius: 0 $border-radius-search $border-radius-search 0;
+
+  &:hover {
+    background-color: lighten($color-search-btn, 10%);
+  }
+}
+
+input:not(:placeholder-shown) {
+  border-radius: $border-radius-search 0 0 $border-radius-search;
+  width: calc(100% - 6rem);
+  + button {
+    display: block;
+  }
+}
+
+label {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+// Timer
+.timer {
+  width: 25rem;
+  height: 25rem;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem;
+
+  p {
+    font-size: 5rem;
+  }
+
+  .assigned-task {
+    margin: 1rem;
+
+    h2 {
+      color: $color-tertiary;
+    }
+  }
+}
+
+// Quote
+.quote {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 30%;
+
+  p {
+    padding: 15px;
+    background: #eee;
+    border-radius: 5px;
+  }
+
+  &:before {
+    content: '\201C';
+  }
+
+  &:after {
+    content: '\201D';
+  }
 }

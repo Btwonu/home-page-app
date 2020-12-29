@@ -2,11 +2,15 @@ import { html, render } from 'lit-html';
 import Sidebar from './sidebar';
 import Navbar from './navbar';
 import Slider from './slider';
+import Timer from './timer';
+import Quote from './quote';
 
 const template = (ctx) => {
   return html` <navbar-component></navbar-component>
+    <timer-component></timer-component>
     <sidebar-component></sidebar-component>
-    <slider-component></slider-component>`;
+    <slider-component></slider-component>
+    <quote-component></quote-component>`;
 };
 
 class Home extends HTMLElement {
