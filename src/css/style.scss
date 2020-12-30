@@ -4,6 +4,7 @@
 @import 'sidebar';
 @import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -20,6 +21,18 @@ body {
 home-component {
   display: flex;
   flex-flow: column;
+  height: 100%;
+}
+
+timer-component {
+  height: 50%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+slider-component {
+  margin-bottom: 2rem;
 }
 
 .slider {
@@ -33,6 +46,7 @@ home-component {
   width: 300px;
   height: 200px;
   background-color: #ededed;
+  border: 2px solid $color-secondary;
   border-radius: 4px;
   // box-shadow: $box-shadow;
   box-shadow: $box-shadow;
@@ -90,7 +104,7 @@ button {
   border-radius: 0 $border-radius-search $border-radius-search 0;
 
   &:hover {
-    background-color: lighten($color-search-btn, 10%);
+    background-color: darken($color-search-btn, 10%);
   }
 }
 
@@ -114,14 +128,13 @@ label {
 
 // Timer
 .timer {
-  width: 25rem;
-  height: 25rem;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   padding: 2rem;
 
   p {
-    font-size: 5rem;
+    font-size: 10rem;
   }
 
   .assigned-task {
@@ -134,23 +147,51 @@ label {
 }
 
 // Quote
+quote-component {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .quote {
-  position: fixed;
+  font-family: 'Special Elite', cursive;
   bottom: 0;
   right: 0;
-  width: 30%;
+  padding: 2rem;
+  max-width: 360px;
+
+  blockquote {
+    border-top: 1px solid $color-tertiary;
+    border-bottom: 1px solid $color-tertiary;
+  }
 
   p {
-    padding: 15px;
-    background: #eee;
+    padding: 2.5rem;
+    // background: #eee;
     border-radius: 5px;
+    position: relative;
+
+    &:before,
+    &:after {
+      font-size: 6rem;
+      color: $color-tertiary;
+      position: absolute;
+    }
+
+    &:before {
+      content: '\201C';
+      top: -20px;
+      left: -5px;
+    }
+
+    &:after {
+      content: '\201D';
+      right: 0;
+      right: -4px;
+      bottom: -61px;
+    }
   }
 
-  &:before {
-    content: '\201C';
-  }
-
-  &:after {
-    content: '\201D';
+  figcaption {
+    padding: 1.5rem;
   }
 }
