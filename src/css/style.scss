@@ -179,7 +179,8 @@ quote-component {
 
     &:before {
       content: '\201C';
-      top: -20px;
+      // top: -21px; // above border
+      top: 1px;
       left: -5px;
     }
 
@@ -187,7 +188,8 @@ quote-component {
       content: '\201D';
       right: 0;
       right: -4px;
-      bottom: -61px;
+      // bottom: -62px; // above border
+      bottom: -40px;
     }
   }
 

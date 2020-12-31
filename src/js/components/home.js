@@ -7,8 +7,8 @@ import Quote from './quote';
 
 const template = (ctx) => {
   return html` <navbar-component></navbar-component>
-    <timer-component></timer-component>
     <sidebar-component></sidebar-component>
+    <timer-component></timer-component>
     <slider-component></slider-component>
     <quote-component></quote-component>`;
 };
