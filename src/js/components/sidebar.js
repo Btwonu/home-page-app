@@ -24,7 +24,7 @@ const template = (ctx) => {
         <ul class="dropdown-content">
           <li><a href="/notes/todays">Todays</a></li>
           <li><a href="/notes/important">Important</a></li>
-          <li><a href="notes/programming">Programming</a></li>
+          <li><a href="/notes/programming">Programming</a></li>
         </ul>
       </li>
       <li class="dropdown">

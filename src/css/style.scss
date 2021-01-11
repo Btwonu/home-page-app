@@ -5,6 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -195,5 +196,84 @@ quote-component {
 
   figcaption {
     padding: 1.5rem;
+  }
+}
+
+.resource-section {
+  height: 100vh;
+  margin-top: 20rem;
+  margin-bottom: 5rem; // temp
+
+  .resources-global-title {
+    text-align: center;
+    font-size: 4rem;
+    padding: 2rem;
+  }
+
+  .resource-card-container {
+    display: flex;
+  }
+}
+
+.resource-card {
+  font-family: 'Montserrat', sans-serif;
+  border: 2px solid #dfdfdf; // temp
+  background-color: #dfdfdf;
+  border-radius: 6px;
+  padding: 1.6rem;
+  margin: 1rem;
+  width: 60rem;
+  height: 40rem;
+  position: relative;
+  margin: 0 auto; // temp
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+
+  h2 {
+    text-align: center;
+    font-size: 4rem;
+    letter-spacing: 0.6rem;
+  }
+
+  .resource-card-image {
+    width: 40%;
+    height: 60%;
+    background: url(https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg?size=626&ext=jpg)
+      center/cover no-repeat;
+    position: absolute;
+    left: -8%;
+    top: 20%;
+    border-radius: 6px;
+    box-shadow: $box-shadow;
+  }
+
+  main {
+    height: 60%;
+    display: flex;
+    flex-flow: column;
+    padding-left: 30%;
+
+    .resource-goals {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      font-size: 2.6rem;
+      line-height: 5rem;
+      font-weight: bold;
+      color: #222222;
+    }
+  }
+
+  footer {
+    // position: absolute;
+    // bottom: 0;
+    // left: 0;
+    width: 100%;
+
+    .resource-tags {
+      display: flex;
+      gap: 3rem;
+    }
   }
 }
