@@ -1,14 +1,17 @@
 @import 'variables';
 @import 'reset';
 @import 'navbar';
+@import 'searchbar';
 @import 'sidebar';
+@import 'resources';
 @import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   background-color: $color-main;
   color: $color-secondary;
   font-size: 1.6rem;
@@ -57,74 +60,6 @@ slider-component {
   // background: url('../images/github.png') center / cover;
   width: 100%;
   height: 100%;
-}
-
-// Search box
-.search-form {
-  position: relative;
-  width: 30rem;
-  // background: var(--color-brand);
-  // border-radius: var(--rad);
-
-  input,
-  button {
-    height: 3.6rem;
-    border: 0;
-    font-size: 1.8rem;
-
-    &:focus {
-      outline: none;
-    }
-  }
-}
-
-.search-input {
-  width: 100%;
-  background: #fff;
-  padding: 0 1.6rem;
-  border-radius: $border-radius-search;
-  appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
-  transition: all 0.3s cubic-bezier(0, 0, 0.43, 1.49);
-  transition-property: width, border-radius;
-  z-index: 1;
-  position: relative;
-
-  &:focus {
-    outline: none;
-  }
-}
-
-button {
-  display: none; // prevent being able to tab to it
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 6rem;
-  // font-weight: bold;
-  background-color: $color-search-btn;
-  border-radius: 0 $border-radius-search $border-radius-search 0;
-
-  &:hover {
-    background-color: darken($color-search-btn, 10%);
-  }
-}
-
-input:not(:placeholder-shown) {
-  border-radius: $border-radius-search 0 0 $border-radius-search;
-  width: calc(100% - 6rem);
-  + button {
-    display: block;
-  }
-}
-
-label {
-  position: absolute;
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 0;
-  border: 0;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
 }
 
 // Timer
@@ -196,84 +131,5 @@ quote-component {
 
   figcaption {
     padding: 1.5rem;
-  }
-}
-
-.resource-section {
-  height: 100vh;
-  margin-top: 20rem;
-  margin-bottom: 5rem; // temp
-
-  .resources-global-title {
-    text-align: center;
-    font-size: 4rem;
-    padding: 2rem;
-  }
-
-  .resource-card-container {
-    display: flex;
-  }
-}
-
-.resource-card {
-  font-family: 'Montserrat', sans-serif;
-  border: 2px solid #dfdfdf; // temp
-  background-color: #dfdfdf;
-  border-radius: 6px;
-  padding: 1.6rem;
-  margin: 1rem;
-  width: 60rem;
-  height: 40rem;
-  position: relative;
-  margin: 0 auto; // temp
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-
-  h2 {
-    text-align: center;
-    font-size: 4rem;
-    letter-spacing: 0.6rem;
-  }
-
-  .resource-card-image {
-    width: 40%;
-    height: 60%;
-    background: url(https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg?size=626&ext=jpg)
-      center/cover no-repeat;
-    position: absolute;
-    left: -8%;
-    top: 20%;
-    border-radius: 6px;
-    box-shadow: $box-shadow;
-  }
-
-  main {
-    height: 60%;
-    display: flex;
-    flex-flow: column;
-    padding-left: 30%;
-
-    .resource-goals {
-      display: flex;
-      flex-flow: column;
-      align-items: center;
-      font-size: 2.6rem;
-      line-height: 5rem;
-      font-weight: bold;
-      color: #222222;
-    }
-  }
-
-  footer {
-    // position: absolute;
-    // bottom: 0;
-    // left: 0;
-    width: 100%;
-
-    .resource-tags {
-      display: flex;
-      gap: 3rem;
-    }
   }
 }

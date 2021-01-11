@@ -21,6 +21,8 @@ class Navbar extends HTMLElement {
   }
 
   connectedCallback() {
+    // console.dir(shadowRoot);
+
     this.render();
   }
 

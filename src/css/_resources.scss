@@ -1,0 +1,107 @@
+.resource-section {
+  height: 100vh;
+  margin-top: 20rem;
+  margin-bottom: 5rem; // temp
+
+  .resources-global-title {
+    text-align: center;
+    font-size: 4rem;
+    padding: 2rem;
+  }
+
+  .resource-card-container {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.resource-card {
+  font-family: 'Lato', sans-serif;
+  border: 2px solid #dfdfdf; // temp
+  background-color: #dfdfdf;
+  border-radius: 6px;
+  padding: 1.8rem;
+  margin: 1rem;
+  width: 60rem;
+  height: 40rem;
+  position: relative;
+  margin: 0 auto; // temp
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  box-shadow: $box-shadow;
+
+  h2 {
+    text-align: center;
+    font-size: 4rem;
+    letter-spacing: 0.6rem;
+    text-shadow: 0px 1px 1px rgba(32, 32, 32, 0.7);
+  }
+
+  .resource-card-image {
+    width: 40%;
+    height: 60%;
+    // background: url(https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg?size=626&ext=jpg)
+    //   center/cover no-repeat;
+    position: absolute;
+    left: -8%;
+    top: 20%;
+    border-radius: 6px;
+    box-shadow: $box-shadow;
+  }
+
+  main {
+    max-height: 70%;
+    display: flex;
+    flex-flow: column;
+    padding-left: 40%;
+    overflow: overlay;
+
+    .resource-goals {
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-flow: column;
+      font-size: 2.6rem;
+      line-height: 5rem;
+      font-weight: bold;
+      color: #222222;
+    }
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+
+    .resource-tags {
+      display: flex;
+      gap: 3rem;
+      color: #323232dd;
+
+      li {
+        border: 1px solid #32323233;
+        border-radius: 16px;
+        padding: 0.6rem 1rem;
+        font-size: 1.4rem;
+        box-shadow: 0px 0px 0px 2px rgba(30, 30, 30, 0.02);
+      }
+    }
+
+    .resource-btn {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      font-family: inherit;
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      text-transform: uppercase;
+      font-weight: bold;
+
+      &:hover {
+        // animate
+      }
+    }
+  }
+}

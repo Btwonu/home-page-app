@@ -12,6 +12,7 @@ import { Router } from '@vaadin/router';
 
 import './components/home';
 import './components/register';
+import './components/resource-page';
 
 // Declarations
 const app = document.getElementById('app');
@@ -43,7 +44,7 @@ router.setRoutes([
     component: 'note-details',
   },
   {
-    path: '/resources/overview',
+    path: '/resources/:id',
     component: 'resource-page',
   },
   {
