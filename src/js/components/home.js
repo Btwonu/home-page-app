@@ -6,11 +6,14 @@ import Timer from './timer';
 import Quote from './quote';
 
 const template = (ctx) => {
-  return html` <navbar-component></navbar-component>
-    <sidebar-component></sidebar-component>
-    <timer-component></timer-component>
-    <slider-component></slider-component>
-    <quote-component></quote-component>`;
+  return html` <div class="layout-wrapper">
+      <navbar-component></navbar-component>
+      <sidebar-component></sidebar-component>
+      <timer-component></timer-component>
+      <slider-component></slider-component>
+      <quote-component></quote-component>
+    </div>
+    >`;
 };
 
 class Home extends HTMLElement {

@@ -22,11 +22,17 @@ body {
   height: 100%;
 }
 
-home-component {
+.layout-wrapper {
   display: flex;
   flex-flow: column;
   height: 100%;
 }
+
+// home-component {
+//   display: flex;
+//   flex-flow: column;
+//   height: 100%;
+// }
 
 timer-component {
   height: 50%;

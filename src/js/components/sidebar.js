@@ -34,9 +34,9 @@ const template = (ctx) => {
           <i class="material-icons arrow-icon">keyboard_arrow_right</i>
         </div>
         <ul class="dropdown-content">
-          <li><a href="#">Overview</a></li>
-          <li><a href="#">Follow along</a></li>
-          <li><a href="#">Immersive</a></li>
+          <li><a href="/resources/overview">Overview</a></li>
+          <li><a href="/resources/follow-along">Follow along</a></li>
+          <li><a href="/resources/immersive">Immersive</a></li>
         </ul>
       </li>
     </ul>

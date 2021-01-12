@@ -17,23 +17,24 @@
 
 .resource-card {
   font-family: 'Lato', sans-serif;
-  border: 2px solid #dfdfdf; // temp
+  border: 2px solid #dfdfdf;
   background-color: #dfdfdf;
   border-radius: 6px;
-  padding: 1.8rem;
+  padding: 1rem;
   margin: 1rem;
-  width: 60rem;
-  height: 40rem;
+  width: 40rem;
+  height: 26rem;
   position: relative;
-  margin: 0 auto; // temp
+  margin: 0 auto;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  box-shadow: $box-shadow;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
   h2 {
     text-align: center;
-    font-size: 4rem;
+    font-size: 2.4rem;
     letter-spacing: 0.6rem;
     text-shadow: 0px 1px 1px rgba(32, 32, 32, 0.7);
   }
@@ -51,20 +52,24 @@
   }
 
   main {
-    max-height: 70%;
+    max-height: 50%;
     display: flex;
     flex-flow: column;
     padding-left: 40%;
     overflow: overlay;
+  }
 
-    .resource-goals {
-      font-family: 'Montserrat', sans-serif;
-      display: flex;
-      flex-flow: column;
-      font-size: 2.6rem;
-      line-height: 5rem;
-      font-weight: bold;
-      color: #222222;
+  .resource-goals {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-flow: column;
+    font-size: 1.4rem;
+    line-height: 4rem;
+    font-weight: bold;
+    color: #222222;
+
+    li {
+      display: block;
     }
   }
 
@@ -73,33 +78,42 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    /* height: 3rem; */
+    max-height: 15%;
 
     .resource-tags {
       display: flex;
       gap: 3rem;
       color: #323232dd;
+      max-height: 100%;
+      max-width: 80%;
 
       li {
         border: 1px solid #32323233;
         border-radius: 16px;
-        padding: 0.6rem 1rem;
-        font-size: 1.4rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 1.2rem;
         box-shadow: 0px 0px 0px 2px rgba(30, 30, 30, 0.02);
+        align-self: center;
       }
     }
 
     .resource-btn {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
       font-family: inherit;
-      width: 5rem;
-      height: 5rem;
       border-radius: 50%;
       text-transform: uppercase;
       font-weight: bold;
+      display: inline-block;
+      background-color: #fdfdfd88;
+      padding: 1.2rem;
+      text-decoration: none;
+      color: #323232;
+      border: 1px solid #32323222;
 
       &:hover {
+        background-color: #323232;
+        color: #fdfdfd;
+        box-shadow: $box-shadow;
         // animate
       }
     }

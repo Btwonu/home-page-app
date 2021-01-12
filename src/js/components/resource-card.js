@@ -21,7 +21,9 @@ const template = (ctx) => {
       </main>
       <footer>
         <ul class="resource-tags">
-          ${ctx.dataset.tags.split(' | ').map((tag) => html`<li>${tag}</li>`)}
+          ${ctx.dataset.tags
+            .split(' | ')
+            .map((tag) => html`<li><p class="tag">${tag}</p></li>`)}
         </ul>
         <a class="resource-btn" href="${ctx.dataset.link}" target="_blank"
           >Go</a
