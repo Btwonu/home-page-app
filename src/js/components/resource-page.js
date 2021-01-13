@@ -1,13 +1,22 @@
 import { html, render } from 'lit-html';
 import request from '../services/request';
 import ResourceCard from './resource-card';
+import Overlay from './overlay';
 
-const template = ({ state }) => {
+const template = ({ state, showOverlay }) => {
   return html`<div class="layout-wrapper">
+    <overlay-component></overlay-component>
     <navbar-component></navbar-component>
     <sidebar-component></sidebar-component>
     <section class="resource-section">
-      <h2 class="resources-global-title">Resources</h2>
+      <header class="resources-header">
+        <div class="resource-add-btn empty"></div>
+        <h2 class="resources-global-title">Resources</h2>
+        <div class="resource-add-btn" @click="${showOverlay}">
+          <p>Add Resource</p>
+          <span class="material-icons"> note_add </span>
+        </div>
+      </header>
       <main class="resource-card-container">
         ${state.map(
           (res) =>
@@ -30,6 +39,11 @@ class Resources extends HTMLElement {
     super();
   }
 
+  async connectedCallback() {
+    this.state = await this.getResources();
+    this.render();
+  }
+
   async getResources() {
     let category = this.location.params.id;
     let response = await request.get(
@@ -45,9 +59,8 @@ class Resources extends HTMLElement {
     return resourceArr;
   }
 
-  async connectedCallback() {
-    this.state = await this.getResources();
-    this.render();
+  showOverlay() {
+    document.querySelector('.overlay').classList.add('show');
   }
 
   render() {
