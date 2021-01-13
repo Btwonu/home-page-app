@@ -11,16 +11,17 @@
   overflow: hidden;
   z-index: 3;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
 }
 
-.overlay.show {
+.overlay.active {
   visibility: visible;
   opacity: 1;
   // background: #293a67df;
   background: #323232df;
   height: 100%;
+  // position: absolute;
 }
 
 .btn-close {

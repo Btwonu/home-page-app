@@ -1,26 +1,48 @@
 import { html, render } from 'lit-html';
+import ResourceForm from './resource-form';
 
 const template = ({ closeOverlay }) => {
   return html`<div class="overlay" @click="${closeOverlay}">
-    <div class="btn-close" @click="${closeOverlay}">
+    <div class="btn-close"">
       <span class="top"></span>
       <span class="bottom"></span>
     </div>
+
+    <resource-form></resource-form>
   </div>`;
 };
 
 class Overlay extends HTMLElement {
   constructor() {
     super();
+    window.addEventListener('storage', () => {
+      console.log('storage');
+    });
   }
 
   connectedCallback() {
     this.render();
   }
 
-  closeOverlay() {
-    this.querySelector('.overlay').classList.remove('show');
+  closeOverlay(e) {
+    if (
+      e.target.className == 'btn-close' ||
+      e.target.className == 'overlay active' ||
+      e.target.className == 'top' ||
+      e.target.className == 'bottom'
+    ) {
+      this.querySelector('.overlay').classList.remove('active');
+    }
   }
+
+  // checkState() {
+  //   if (localStorage.getItem('overlay')) {
+  //     this.querySelector('.overlay').classList.add('active');
+  //     this.render();
+  //   } else {
+  //     this.querySelector('.overlay').classList.remove('active');
+  //   }
+  // }
 
   render() {
     render(template(this), this, { eventContext: this });

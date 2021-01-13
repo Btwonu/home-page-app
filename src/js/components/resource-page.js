@@ -3,7 +3,7 @@ import request from '../services/request';
 import ResourceCard from './resource-card';
 import Overlay from './overlay';
 
-const template = ({ state, showOverlay }) => {
+const template = ({ state, openOverlay }) => {
   return html`<div class="layout-wrapper">
     <overlay-component></overlay-component>
     <navbar-component></navbar-component>
@@ -12,7 +12,7 @@ const template = ({ state, showOverlay }) => {
       <header class="resources-header">
         <div class="resource-add-btn empty"></div>
         <h2 class="resources-global-title">Resources</h2>
-        <div class="resource-add-btn" @click="${showOverlay}">
+        <div class="resource-add-btn" @click="${openOverlay}">
           <p>Add Resource</p>
           <span class="material-icons"> note_add </span>
         </div>
@@ -59,8 +59,9 @@ class Resources extends HTMLElement {
     return resourceArr;
   }
 
-  showOverlay() {
-    document.querySelector('.overlay').classList.add('show');
+  openOverlay() {
+    document.querySelector('.overlay').classList.add('active');
+    // localStorage.setItem('overlay', 'active');
   }
 
   render() {
