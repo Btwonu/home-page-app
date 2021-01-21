@@ -45,8 +45,9 @@ const template = ({ combined }) => {
 
     <div class="form-group inactive">
       <span class="material-icons"> schema </span>
-      <label for="tags"></label>
-      <input type="text" placeholder="tags" />
+      <div class="tag-container"></div>
+      <label for="resource-tags"></label>
+      <input type="text" id="resource-tags" placeholder="tags" />
       <span class="material-icons arrow"> arrow_right_alt </span>
     </div>
 
@@ -63,6 +64,8 @@ class ResourceForm extends HTMLElement {
   constructor() {
     super();
     this.data = [];
+    this.tags = [];
+    this.goals = [];
   }
 
   connectedCallback() {
@@ -84,7 +87,23 @@ class ResourceForm extends HTMLElement {
     let currentFormGroup = currentInput.parentElement;
     let nextFormGroup = currentFormGroup.nextElementSibling;
     let value = currentInput.value;
-    this.data.push(value);
+
+    // Generate tag
+    const tagContainer = currentFormGroup.querySelector('.tag-container');
+
+    console.log(tagContainer);
+
+    if (tagContainer) {
+      this.tags.push(value);
+
+      // Render tags in DOM
+      render(this.generateTags(), tagContainer);
+
+      console.log(this.tags);
+
+      currentInput.value = '';
+      return;
+    }
 
     let allIsOk = true; // validation
     if (allIsOk) {
@@ -92,10 +111,18 @@ class ResourceForm extends HTMLElement {
       nextFormGroup.classList.remove('inactive');
       // console.dir(nextFormGroup);
 
+      // push data
+      this.data.push(value);
+
       // if next field has an input -> focus it
-      if (nextFormGroup.children[2].localName == 'input') {
-        nextFormGroup.children[2].focus();
+      const nextInput = nextFormGroup.querySelector('input');
+
+      if (nextInput) {
+        nextInput.focus();
       }
+      // if (nextFormGroup.children[2].localName == 'input') {
+      //   nextFormGroup.children[2].focus();
+      // }
     }
 
     console.log('currentFormGroup:', currentFormGroup);
@@ -103,6 +130,15 @@ class ResourceForm extends HTMLElement {
     console.log('nextFormGroup:', nextFormGroup);
     console.log('Value:', value);
     console.log(this.data);
+  }
+
+  generateTags() {
+    return html`${this.tags.map(
+      (tag) => html`<div class="resource-tag">
+        <span>${tag}</span>
+        <span class="material-icons tag-close-btn"> close </span>
+      </div>`
+    )}`;
   }
 
   render() {

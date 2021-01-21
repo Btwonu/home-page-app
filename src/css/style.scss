@@ -153,17 +153,18 @@ quote-component {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 50px;
-  width: 400px;
+  padding: 1rem;
   background: #fdfdfd;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all 0.5s ease;
   border-radius: 5px;
+  max-width: 80%;
 
   input {
-    height: 100%;
+    // height: 100%;
+    min-height: 4rem;
     flex: 1;
     border: none;
     outline: none;
@@ -185,4 +186,31 @@ quote-component {
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, 50%);
+}
+
+.tag-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  width: max-content;
+
+  .resource-tag {
+    border: 1px solid #ccc;
+    color: #323232;
+    background: #f2f2f2;
+    border-radius: 4px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+
+    span {
+      height: 100%;
+    }
+  }
+
+  .tag-close-btn {
+    padding: 0 0 0 1rem;
+    font-size: 1.8rem;
+  }
 }
