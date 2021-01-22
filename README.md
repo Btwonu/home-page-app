@@ -2,6 +2,20 @@
 
 My skeleton for building single page applications.
 
+## Ubuntu/Windows start script
+
+- Ubuntu:
+
+```json
+"start": "webpack serve --open /usr/bin/google-chrome"
+```
+
+- Windows:
+
+```json
+"start": "webpack serve --open chrome"
+```
+
 ## Webpack
 
 - Development server

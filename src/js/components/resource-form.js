@@ -1,10 +1,10 @@
 import { html, render } from 'lit-html';
 
-const template = ({ combined }) => {
+const template = ({ onEnterPress, onArrowClick, createResource }) => {
   return html`<form
     id="form-resource-add"
-    @keyup="${combined}"
-    @click="${combined}"
+    @keyup="${onEnterPress}"
+    @click="${onArrowClick}"
   >
     <div class="form-group">
       <span class="material-icons"> article </span>
@@ -13,6 +13,7 @@ const template = ({ combined }) => {
         type="text"
         id="resource-form-title"
         placeholder="Enter resource title"
+        name="title"
       />
       <span class="material-icons arrow"> arrow_right_alt </span>
     </div>
@@ -20,21 +21,21 @@ const template = ({ combined }) => {
     <div class="form-group inactive">
       <span class="material-icons"> insert_link </span>
       <label for="url"></label>
-      <input type="url" placeholder="url" />
+      <input type="url" placeholder="url" name="url" />
       <span class="material-icons arrow"> arrow_right_alt </span>
     </div>
 
     <div class="form-group inactive">
       <span class="material-icons"> insert_photo </span>
       <label for="img-url"></label>
-      <input type="url" placeholder="image" />
+      <input type="url" placeholder="image" id="img-url" name="imgUrl" />
       <span class="material-icons arrow"> arrow_right_alt </span>
     </div>
 
     <div class="form-group inactive">
       <span class="material-icons"> category </span>
       <label for="category"></label>
-      <select name="" id="category">
+      <select name="category" id="category">
         <option value="">--Category--</option>
         <option value="overview">Overview</option>
         <option value="follow-along">Follow-along</option>
@@ -51,11 +52,21 @@ const template = ({ combined }) => {
       <span class="material-icons arrow"> arrow_right_alt </span>
     </div>
 
-    <div class="form-group inactive">
-      <span class="material-icons"> task_alt </span>
-      <label for="goals"></label>
-      <input type="text" placeholder="goals" />
-      <span class="material-icons arrow"> arrow_right_alt </span>
+    <div class="form-group goals inactive">
+      <span class="material-icons"> fact_check </span>
+      <div class="goal-container">
+        <div class="resource-goal">
+          <span class="material-icons"> label </span>
+          <span class="goal">Add goals</span>
+          <span class="material-icons tag-close-btn"> close </span>
+        </div>
+      </div>
+      <div class="input-wrapper">
+        <span class="material-icons"> task_alt </span>
+        <label for="goals"></label>
+        <input type="text" placeholder="goals" />
+      </div>
+      <span class="material-icons" @click="${createResource}"> note_add </span>
     </div>
   </form>`;
 };
@@ -63,21 +74,55 @@ const template = ({ combined }) => {
 class ResourceForm extends HTMLElement {
   constructor() {
     super();
-    this.data = [];
+    this.data = {};
     this.tags = [];
     this.goals = [];
+
+    const form = document.getElementById('form-resource-add');
+    console.log(form);
   }
 
   connectedCallback() {
     this.render();
   }
 
-  combined(e) {
+  onArrowClick(e) {
     const arrowClicked = Array.from(e.target.classList).includes('arrow');
+    if (!arrowClicked) return;
 
-    if (e.key !== 'Enter' && !arrowClicked) {
+    let currentInput = e.target.previousElementSibling;
+    let currentFormGroup = currentInput.parentElement;
+    let nextFormGroup = currentFormGroup.nextElementSibling;
+    let value = currentInput.value;
+    let isLastInput = nextFormGroup == null;
+
+    // form is filled
+    if (isLastInput) {
+      this.createResource();
       return;
     }
+
+    const tagContainer = currentFormGroup.querySelector('.tag-container');
+
+    // tags are done
+    if (tagContainer) {
+      this.advanceFormFields(currentFormGroup, nextFormGroup, currentInput);
+      console.log(this.tags);
+      return;
+    }
+
+    // current input is done
+    if (value.length) {
+      this.advanceFormFields(currentFormGroup, nextFormGroup, currentInput);
+    }
+  }
+
+  onEnterPress(e) {
+    if (e.key !== 'Enter') {
+      return;
+    }
+
+    console.log('Enter key pressed');
 
     let currentInput =
       e.target.localName == 'input'
@@ -88,11 +133,26 @@ class ResourceForm extends HTMLElement {
     let nextFormGroup = currentFormGroup.nextElementSibling;
     let value = currentInput.value;
 
-    // Generate tag
+    let isLastInput = Array.from(currentFormGroup.classList).includes(
+      'input-wrapper'
+    );
+
+    // add goals
+    if (isLastInput) {
+      const goalContainer = currentFormGroup.previousElementSibling;
+
+      this.goals.push(value);
+
+      render(this.generateGoals(), goalContainer);
+
+      console.log(this.goals);
+      currentInput.value = '';
+      return;
+    }
+
     const tagContainer = currentFormGroup.querySelector('.tag-container');
 
-    console.log(tagContainer);
-
+    // add tags
     if (tagContainer) {
       this.tags.push(value);
 
@@ -105,31 +165,25 @@ class ResourceForm extends HTMLElement {
       return;
     }
 
-    let allIsOk = true; // validation
-    if (allIsOk) {
-      currentFormGroup.classList.add('inactive');
-      nextFormGroup.classList.remove('inactive');
-      // console.dir(nextFormGroup);
+    // current input is done
+    if (value.length) {
+      this.advanceFormFields(currentFormGroup, nextFormGroup, currentInput);
+    }
+  }
 
-      // push data
-      this.data.push(value);
+  advanceFormFields(current, next, input) {
+    current.classList.add('inactive');
+    next.classList.remove('inactive');
 
-      // if next field has an input -> focus it
-      const nextInput = nextFormGroup.querySelector('input');
+    const nextInput = next.querySelector('input');
 
-      if (nextInput) {
-        nextInput.focus();
-      }
-      // if (nextFormGroup.children[2].localName == 'input') {
-      //   nextFormGroup.children[2].focus();
-      // }
+    if (nextInput) {
+      nextInput.focus();
     }
 
-    console.log('currentFormGroup:', currentFormGroup);
-    console.log('currentInput:', currentInput);
-    console.log('nextFormGroup:', nextFormGroup);
-    console.log('Value:', value);
-    console.log(this.data);
+    if (input.value) {
+      this.data[input.name] = input.value;
+    }
   }
 
   generateTags() {
@@ -139,6 +193,31 @@ class ResourceForm extends HTMLElement {
         <span class="material-icons tag-close-btn"> close </span>
       </div>`
     )}`;
+  }
+
+  generateGoals() {
+    return html`${this.goals.map(
+      (goal) => html`<div class="resource-goal">
+        <span class="material-icons"> label </span>
+        <span class="goal">${goal}</span>
+        <span class="material-icons tag-close-btn"> close </span>
+      </div>`
+    )}`;
+  }
+
+  createResource() {
+    console.log('Resource created');
+    console.log('data', this.data);
+    console.log('tags', this.tags);
+    console.log('goals', this.goals);
+
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.data = {};
+    this.tags = [];
+    this.goals = [];
   }
 
   render() {

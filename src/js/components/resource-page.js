@@ -61,6 +61,17 @@ class Resources extends HTMLElement {
 
   openOverlay() {
     document.querySelector('.overlay').classList.add('active');
+    // const initialInput = document
+    //   .querySelector('.form-group')
+    //   .querySelector('input');
+
+    const initialInput = document.getElementById('resource-form-title');
+
+    // ugly hack
+    setTimeout(() => {
+      initialInput.focus();
+    }, 500);
+
     // localStorage.setItem('overlay', 'active');
   }
 

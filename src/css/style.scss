@@ -170,9 +170,44 @@ quote-component {
     outline: none;
   }
 
+  select {
+    padding: 0.5rem;
+    border-radius: 5px;
+    background: #fdfdfd;
+  }
+
   .material-icons {
     padding: 1rem;
     cursor: pointer;
+  }
+}
+
+.form-group.goals {
+  flex-flow: column;
+
+  .input-wrapper {
+    display: flex;
+  }
+
+  .goal-container {
+    max-width: 100%;
+    background: #fdfdfd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+
+    .resource-goal {
+      display: flex;
+      padding: 1rem 0 1rem 0;
+      width: 100%;
+      align-items: center;
+
+      .goal {
+        flex: 1;
+      }
+    }
   }
 }
 
