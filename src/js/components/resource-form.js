@@ -1,4 +1,6 @@
+import { Router } from '@vaadin/router';
 import { html, render } from 'lit-html';
+import Model from '../services/model';
 
 const template = ({ onEnterPress, onArrowClick, createResource }) => {
   return html`<form
@@ -28,7 +30,7 @@ const template = ({ onEnterPress, onArrowClick, createResource }) => {
     <div class="form-group inactive">
       <span class="material-icons"> insert_photo </span>
       <label for="img-url"></label>
-      <input type="url" placeholder="image" id="img-url" name="imgUrl" />
+      <input type="url" placeholder="image" id="img-url" name="img" />
       <span class="material-icons arrow"> arrow_right_alt </span>
     </div>
 
@@ -79,7 +81,6 @@ class ResourceForm extends HTMLElement {
     this.goals = [];
 
     const form = document.getElementById('form-resource-add');
-    console.log(form);
   }
 
   connectedCallback() {
@@ -106,8 +107,8 @@ class ResourceForm extends HTMLElement {
 
     // tags are done
     if (tagContainer) {
+      if (this.tags.length == 0) return;
       this.advanceFormFields(currentFormGroup, nextFormGroup, currentInput);
-      console.log(this.tags);
       return;
     }
 
@@ -122,8 +123,6 @@ class ResourceForm extends HTMLElement {
       return;
     }
 
-    console.log('Enter key pressed');
-
     let currentInput =
       e.target.localName == 'input'
         ? e.target
@@ -137,6 +136,10 @@ class ResourceForm extends HTMLElement {
       'input-wrapper'
     );
 
+    if (!value) {
+      return;
+    }
+
     // add goals
     if (isLastInput) {
       const goalContainer = currentFormGroup.previousElementSibling;
@@ -145,7 +148,6 @@ class ResourceForm extends HTMLElement {
 
       render(this.generateGoals(), goalContainer);
 
-      console.log(this.goals);
       currentInput.value = '';
       return;
     }
@@ -158,8 +160,6 @@ class ResourceForm extends HTMLElement {
 
       // Render tags in DOM
       render(this.generateTags(), tagContainer);
-
-      console.log(this.tags);
 
       currentInput.value = '';
       return;
@@ -206,12 +206,24 @@ class ResourceForm extends HTMLElement {
   }
 
   createResource() {
+    if (this.goals.length == 0) return;
     console.log('Resource created');
-    console.log('data', this.data);
-    console.log('tags', this.tags);
-    console.log('goals', this.goals);
+    // console.log('data', this.data);
+    // console.log('tags', this.tags);
+    // console.log('goals', this.goals);
+
+    let obj = {
+      ...this.data,
+      tags: this.tags,
+      goals: this.goals,
+    };
+
+    console.log(obj);
 
     this.resetForm();
+
+    // Save to DB
+    Model.create(`resources/${obj.category}`, obj);
   }
 
   resetForm() {
